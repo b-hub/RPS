@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPS.Android", "RPS\RPS.Android\RPS.Android.csproj", "{62A076A2-9E19-49CF-873A-905B0C30BE6E}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "RPS", "RPS\RPS\RPS.shproj", "{DAB707A2-1C0B-4192-8A6D-F964515B89E6}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		RPS\RPS\RPS.projitems*{62a076a2-9e19-49cf-873a-905b0c30be6e}*SharedItemsImports = 4
+		RPS\RPS\RPS.projitems*{dab707a2-1c0b-4192-8a6d-f964515b89e6}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62A076A2-9E19-49CF-873A-905B0C30BE6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62A076A2-9E19-49CF-873A-905B0C30BE6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62A076A2-9E19-49CF-873A-905B0C30BE6E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{62A076A2-9E19-49CF-873A-905B0C30BE6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62A076A2-9E19-49CF-873A-905B0C30BE6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62A076A2-9E19-49CF-873A-905B0C30BE6E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B140ABAE-08DB-4E4B-BBE0-EEC70FC08E0E}
+	EndGlobalSection
+EndGlobal
