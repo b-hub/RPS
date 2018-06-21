@@ -102,7 +102,9 @@
   <Import Project="..\RPS\RPS.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>if [ ! -n "$APP_CENTER_KEY" ]
+    <PreBuildEvent>#!/usr/bin/env bash
+
+if [ ! -n "$APP_CENTER_KEY" ]
 then
     echo "You need define the $APP_CENTER_KEY variable in App Center"
     exit
