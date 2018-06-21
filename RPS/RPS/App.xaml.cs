@@ -1,4 +1,7 @@
 using System;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,8 +19,8 @@ namespace RPS
 
 		protected override void OnStart ()
 		{
-			// Handle when your app starts
-		}
+		    AppCenter.Start("android=7d5094f0-9688-4203-8318-d6b91d8b62ce", typeof(Analytics), typeof(Crashes));
+        }
 
 		protected override void OnSleep ()
 		{
