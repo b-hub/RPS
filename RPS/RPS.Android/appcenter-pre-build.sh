@@ -1,10 +1,12 @@
-﻿if [ ! -n "$APP_CENTER_KEY" ]
+﻿#!/usr/bin/env bash
+
+if [ ! -n "$APP_CENTER_KEY" ]
 then
     echo "You need define the $APP_CENTER_KEY variable in App Center"
     exit
 fi
 
-APP_CONSTANT_FILE=$APPCENTER_SOURCE_DIRECTORY/RPS/AppConstant.cs
+APP_CONSTANT_FILE=$APPCENTER_SOURCE_DIRECTORY/RPS/Constants/AppConstant.cs
 
 if [ -e "$APP_CONSTANT_FILE" ]
 then
