@@ -2,11 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:RPS"
+             xmlns:constants="clr-namespace:RPS.Constants;assembly=RPS.Android"
              x:Class="RPS.MainPage">
 
     <StackLayout>
         <!-- Place new controls here -->
-    	<Label Text="Welcome to Xamarin.Forms!" 
+    	<Label Text="{x:Static constants:AppConstant.AppCenterKey}" 
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
 		
