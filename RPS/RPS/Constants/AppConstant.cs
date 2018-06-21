@@ -6,6 +6,6 @@ namespace RPS.Constants
 {
     public class AppConstant
     {
-        public const string AppCenterKey = null;
+        public const string AppCenterKey = "";
     }
 }
