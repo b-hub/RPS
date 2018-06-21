@@ -22,8 +22,6 @@ namespace RPS.Droid
 
             base.OnCreate(bundle);
 
-            AppCenter.Start("7d5094f0-9688-4203-8318-d6b91d8b62ce", typeof(Analytics), typeof(Crashes));
-
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
         }

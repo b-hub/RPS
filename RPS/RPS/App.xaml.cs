@@ -2,6 +2,7 @@ using System;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using RPS.Constants;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,7 +20,7 @@ namespace RPS
 
 		protected override void OnStart ()
 		{
-		    AppCenter.Start("android=7d5094f0-9688-4203-8318-d6b91d8b62ce", typeof(Analytics), typeof(Crashes));
+            AppCenter.Start(AppConstant.AppCenterKey, typeof(Analytics), typeof(Crashes));
         }
 
 		protected override void OnSleep ()
