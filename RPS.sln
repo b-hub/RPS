@@ -9,6 +9,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "RPS", "RPS\RPS\RPS.shproj",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPS.Web", "RPS.Web\RPS.Web.csproj", "{61D2394C-9569-447C-9169-A46C115C0B48}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPS.Console", "RPS.Console\RPS.Console.csproj", "{C735281B-E581-43BC-B546-586330B27F6A}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		RPS\RPS\RPS.projitems*{62a076a2-9e19-49cf-873a-905b0c30be6e}*SharedItemsImports = 4
@@ -29,6 +31,10 @@ Global
 		{61D2394C-9569-447C-9169-A46C115C0B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61D2394C-9569-447C-9169-A46C115C0B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61D2394C-9569-447C-9169-A46C115C0B48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C735281B-E581-43BC-B546-586330B27F6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C735281B-E581-43BC-B546-586330B27F6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C735281B-E581-43BC-B546-586330B27F6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C735281B-E581-43BC-B546-586330B27F6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

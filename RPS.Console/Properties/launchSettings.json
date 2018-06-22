@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "RPS.Console": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "HUB_URL": "http://localhost:63984/gamehub"
+      }
+    }
+  }
+}
