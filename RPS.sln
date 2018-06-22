@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPS.Android", "RPS\RPS.Andr
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "RPS", "RPS\RPS\RPS.shproj", "{DAB707A2-1C0B-4192-8A6D-F964515B89E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPS.Web", "RPS.Web\RPS.Web.csproj", "{61D2394C-9569-447C-9169-A46C115C0B48}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		RPS\RPS\RPS.projitems*{62a076a2-9e19-49cf-873a-905b0c30be6e}*SharedItemsImports = 4
@@ -23,6 +25,10 @@ Global
 		{62A076A2-9E19-49CF-873A-905B0C30BE6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62A076A2-9E19-49CF-873A-905B0C30BE6E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{62A076A2-9E19-49CF-873A-905B0C30BE6E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{61D2394C-9569-447C-9169-A46C115C0B48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61D2394C-9569-447C-9169-A46C115C0B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61D2394C-9569-447C-9169-A46C115C0B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61D2394C-9569-447C-9169-A46C115C0B48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
