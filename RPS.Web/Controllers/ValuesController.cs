@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using RPS.Web.Hubs;
 
 namespace RPS.Web.Controllers
 {
@@ -10,10 +12,18 @@ namespace RPS.Web.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private IHubContext<GameHub> gameHub;
+
+        public ValuesController(IHubContext<GameHub> gameHub)
+        {
+            this.gameHub = gameHub;
+        }
+
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<ActionResult<IEnumerable<string>>> Get()
         {
+            await gameHub.Clients.All.SendAsync("StartGame", "hi");
             return new string[] { "value1", "value2" };
         }
 
