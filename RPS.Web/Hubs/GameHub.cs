@@ -58,6 +58,7 @@ namespace RPS.Web.Hubs
         public override Task OnDisconnectedAsync(Exception exception)
         {
             _disconnected.TryAdd(Context.ConnectionId, false);
+            // quit game if exists
 
             return base.OnDisconnectedAsync(exception);
         }
@@ -69,8 +70,7 @@ namespace RPS.Web.Hubs
 
         public async Task Fight(string gameId, int move)
         {
-            _games.TryGetValue(gameId, out var game);
-            if (game == null)
+            if (!_games.TryGetValue(gameId, out var game))
             {
                 await Clients.Client(Context.ConnectionId).SendAsync("ReceiveMessage", "Invalid game id");
                 return;
@@ -84,7 +84,27 @@ namespace RPS.Web.Hubs
             {
                 await Clients.Client(Context.ConnectionId).SendAsync("ReceiveMessage", ex.Message);
             }
-            
+        }
+
+        public async Task<(bool, string)> Quit(string gameId)
+        {
+            var connectionId = Context.ConnectionId;
+
+            if (!_games.TryGetValue(gameId, out var game))
+            {
+                return (false, "Invalid game id");
+            }
+
+            if (!game.IsPlayer(connectionId))
+            {
+                return (false, "You are not a part of this game");
+            }
+
+            _games.TryRemove(gameId, out game);
+            var opponentId = game.OpponentId(connectionId);
+
+            await Clients.Client(opponentId).SendAsync("QuitGame", $"{connectionId} has quit the game. Game summary: {game.GameSummary(opponentId)}");
+            return (true, game.GameSummary(connectionId));
         }
 
         private async Task StartGame(Game game)
@@ -103,6 +123,11 @@ namespace RPS.Web.Hubs
         private int? _move1;
         private int? _move2;
 
+        private IList<string> _results = new List<string>();
+        private int GetWins(string playerId) => _results.Count(x => x == playerId);
+        private int GetLosses(string playerId) => _results.Count(x => x == OpponentId(playerId));
+        private int GetDraws() => _results.Count(x => x == null);
+
         public Game(string id, string id1, string id2)
         {
             Id = id;
@@ -118,6 +143,14 @@ namespace RPS.Web.Hubs
         public string Id1 { get; }
         public string Id2 { get; }
 
+        public bool IsPlayer(string playerId) => Id1 == playerId || Id2 == playerId;
+        public string OpponentId(string playerId) => Id1 == playerId ? Id2 : Id1;
+
+        public string GameSummary(string playerId)
+        {
+            return $"Wins: {GetWins(playerId)}, Losses: {GetLosses(playerId)}, Draws: {GetDraws()}";
+        }
+            
         public void Fight(string id, int move)
         {
             if (id == Id1)
@@ -137,7 +170,12 @@ namespace RPS.Web.Hubs
 
             if (_move1.HasValue && _move2.HasValue)
             {
-                OnResult?.Invoke(this, GetWinner());
+                var winningId = GetWinner();
+                _move1 = null;
+                _move2 = null;
+                _results.Add(winningId);
+
+                OnResult?.Invoke(this, winningId);
             }
         }
 

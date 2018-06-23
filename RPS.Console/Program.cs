@@ -3,12 +3,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
 
+/* SET HUB_URL= */
+
 namespace RPS.Console
 {
     class Program
     {
         private static HubConnection _connection;
         private static string _gameId;
+        private static bool hasQuit;
 
         static void Main(string[] args)
         {
@@ -16,18 +19,24 @@ namespace RPS.Console
 
             StartUp().Wait();
 
-            while (true)
+            while (!hasQuit)
             {
                 var message = System.Console.ReadLine();
+ 
                 if (_gameId != null && int.TryParse(message, out var move))
                 {
-                    Fight(_gameId, move);
+                    Fight(_gameId, move).Wait();
+                    continue;
+                }
+
+                if (message == "q" || message == "quit")
+                {
+                    Quit(_gameId).Wait();
                 }
                 else
                 {
-                    Send(message);
+                    Send(message).Wait();
                 }
-                
             }
         }
 
@@ -56,6 +65,15 @@ namespace RPS.Console
                     System.Console.ResetColor();
                 });
 
+                _connection.On<string>("QuitGame", async (message) =>
+                {
+                    _gameId = null;
+                    System.Console.ForegroundColor = ConsoleColor.DarkRed;
+                    System.Console.WriteLine(message);
+                    System.Console.ResetColor();
+                    OnQuit();
+                });
+
                 await _connection.StartAsync();
 
                 System.Console.WriteLine("Started!");
@@ -66,7 +84,7 @@ namespace RPS.Console
             }
         }
 
-        private static async void Send(string message)
+        private static async Task Send(string message)
         {
             try
             {
@@ -78,7 +96,7 @@ namespace RPS.Console
             }
         }
 
-        private static async void Fight(string gameId, int move)
+        private static async Task Fight(string gameId, int move)
         {
             try
             {
@@ -88,6 +106,32 @@ namespace RPS.Console
             {
                 System.Console.WriteLine(ex);
             }
+        }
+
+        private static async Task Quit(string gameId)
+        {
+            try
+            {
+                var result = await _connection.InvokeAsync<(bool success, string message)>("Quit", gameId);
+                System.Console.WriteLine(result.message);
+
+                if (result.success)
+                {
+                    OnQuit();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex);
+            }
+        }
+
+        private static void OnQuit()
+        {
+            _connection?.StopAsync();
+            _connection?.DisposeAsync();
+
+            Environment.Exit(0);
         }
     }
 }
