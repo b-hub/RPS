@@ -27,6 +27,7 @@ namespace RPS.Services
                 _connection.On<string>("StartGame", (gameId) =>
                 {
                     Console.WriteLine(gameId);
+                    GameFound?.Invoke(gameId);
                 });
 
                 _connection.On<string>("QuitGame", async (message) =>
@@ -43,5 +44,7 @@ namespace RPS.Services
                 Console.WriteLine(ex);
             }
         }
+
+        public event OnGameFound GameFound;
     }
 }

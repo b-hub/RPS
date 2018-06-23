@@ -17,14 +17,22 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Constants\AppConstant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Services\GameHubProxy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interfaces\IGameService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\GamePageVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageVM.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Pages\" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\GamePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

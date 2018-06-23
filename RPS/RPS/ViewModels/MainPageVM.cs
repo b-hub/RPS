@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Android.Content.Res;
 using RPS.Services;
 using RPS.Services.Interfaces;
 using Xamarin.Forms;
@@ -15,9 +16,10 @@ namespace RPS.ViewModels
     {
         private IGameService _gameService;
 
-        public MainPageVM()
+        public MainPageVM(IGameService gameService)
         {
-            _gameService = new GameHubProxy();
+            _gameService = gameService;
+
             CmdFindGame = new Command(async() => await FindGame());
         }
 
@@ -36,8 +38,9 @@ namespace RPS.ViewModels
 
         private async Task FindGame()
         {
-            GameStatus = "Finding a game...";
+            GameStatus = "Connecting...";
             await _gameService.FindGame();
+            GameStatus = "Finding a game...";
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

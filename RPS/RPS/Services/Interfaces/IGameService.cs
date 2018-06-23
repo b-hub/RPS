@@ -8,5 +8,8 @@ namespace RPS.Services.Interfaces
     public interface IGameService
     {
         Task FindGame();
+        event OnGameFound GameFound;
     }
+
+    public delegate void OnGameFound(string gameId);
 }
