@@ -5,13 +5,11 @@
              xmlns:constants="clr-namespace:RPS.Constants;assembly=RPS.Android"
              x:Class="RPS.MainPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-    	<Label Text="{x:Static constants:AppConstant.AppCenterKey}" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-		
-		<Button Clicked="Button_OnClicked"></Button>
-    </StackLayout>
+    <StackLayout VerticalOptions="Center">
+		<Label Text="Welcome to RPS" HorizontalOptions="Center"></Label>
+		<Label Text="{Binding GameStatus}" HorizontalOptions="Center"></Label>
+
+		<Button Text="Find game" Command="{Binding CmdFindGame}" Margin="0, 20, 0, 0"></Button>
+	</StackLayout>
 
 </ContentPage>

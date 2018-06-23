@@ -10,15 +10,21 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)MainPage.xaml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\MainPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Constants\AppConstant.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Services\GameHubProxy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Interfaces\IGameService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageVM.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Pages\" />
   </ItemGroup>
 </Project>

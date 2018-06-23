@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Analytics;
+using RPS.ViewModels;
 using Xamarin.Forms;
 
 namespace RPS
@@ -12,12 +13,8 @@ namespace RPS
 	{
 		public MainPage()
 		{
-			InitializeComponent();
+            InitializeComponent();
+		    BindingContext = new MainPageVM();
 		}
-
-	    private void Button_OnClicked(object sender, EventArgs e)
-	    {
-	        Analytics.TrackEvent("Button clicked");
-	    }
 	}
 }
