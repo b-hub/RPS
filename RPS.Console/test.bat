@@ -1,1 +1,1 @@
-start cmd /k "cd "bin/Debug/netcoreapp2.1" && SET HUB_URL=http://localhost:63984/gamehub && dotnet RPS.Console.dll"
+start cmd /k "cd "bin/Debug/netcoreapp2.1" && SET HUB_URL=http://localhost:63984/gamehub && dotnet RPS.Console.dll && exit"

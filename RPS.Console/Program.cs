@@ -60,7 +60,7 @@ namespace RPS.Console
                 _connection.On<string>("StartGame", (gameId) =>
                 {
                     _gameId = gameId;
-                    System.Console.ForegroundColor = ConsoleColor.DarkRed;
+                    System.Console.ForegroundColor = ConsoleColor.Green;
                     System.Console.WriteLine($"Started game with id: {_gameId}");
                     System.Console.ResetColor();
                 });
@@ -68,7 +68,7 @@ namespace RPS.Console
                 _connection.On<string>("QuitGame", async (message) =>
                 {
                     _gameId = null;
-                    System.Console.ForegroundColor = ConsoleColor.DarkRed;
+                    System.Console.ForegroundColor = ConsoleColor.Red;
                     System.Console.WriteLine(message);
                     System.Console.ResetColor();
                     OnQuit();
