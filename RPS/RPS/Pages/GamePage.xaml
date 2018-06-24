@@ -5,7 +5,9 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center">
 			<Label Text="Game" HorizontalOptions="Center"></Label>
-            <Label Text="{Binding GameId}" VerticalOptions="Center" HorizontalOptions="Center" Margin="0, 0, 0, 20" />
+            <Label Text="{Binding GameId}" VerticalOptions="Center" HorizontalOptions="Center" />
+			
+			<Label Text="{Binding Status}" Margin="20" HorizontalOptions="Center"></Label>
 			
 			<Button Text="Rock"></Button>
 			<Button Text="Paper"></Button>

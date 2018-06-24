@@ -17,6 +17,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Constants\AppConstant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\Enums\GameMove.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\Enums\GameResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Observable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
       <SubType>Code</SubType>

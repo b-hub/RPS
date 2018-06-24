@@ -20,25 +20,7 @@ namespace RPS
 		    NavigationPage.SetHasNavigationBar(this, false);
 
             var gameService = new GameHubProxy();
-		    gameService.GameFound += async gameId => await OnGameFound(gameId);
             BindingContext = new MainPageVM(gameService);
 		}
-
-	    private async Task OnGameFound(string gameid)
-	    {
-	        var gamePageVM = new GamePageVM
-	        {
-                GameId = gameid
-	        };
-
-	        var page = new GamePage {BindingContext = gamePageVM};
-	        if (Application.Current.MainPage is NavigationPage navPage)
-	        {
-	            Device.BeginInvokeOnMainThread(async () =>
-	            {
-	                await navPage.PushAsync(page);
-                });
-	        }
-	    }
 	}
 }

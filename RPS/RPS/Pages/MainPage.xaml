@@ -9,7 +9,7 @@
 		<Label Text="Welcome to RPS" HorizontalOptions="Center"></Label>
 		<Label Text="{Binding GameStatus}" HorizontalOptions="Center"></Label>
 
-		<Button Text="Find game" Command="{Binding CmdFindGame}" Margin="0, 20, 0, 0"></Button>
+		<Button Text="{Binding ButtonText}" Command="{Binding CmdFindGame}" Margin="0, 20, 0, 0"></Button>
 	</StackLayout>
 
 </ContentPage>

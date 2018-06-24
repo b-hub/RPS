@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
+using RPS.Domain.Enums;
 using RPS.Services.Interfaces;
 
 namespace RPS.Services
@@ -45,6 +46,19 @@ namespace RPS.Services
             }
         }
 
+        public async Task Fight(string gameId, GameMove move)
+        {
+            try
+            {
+                await _connection.InvokeAsync("Fight", gameId, move);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex);
+            }
+        }
+
         public event OnGameFound GameFound;
+        public event OnGameResult GameResult;
     }
 }
