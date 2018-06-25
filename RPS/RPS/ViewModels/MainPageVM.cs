@@ -58,6 +58,7 @@ namespace RPS.ViewModels
             {
                 _gameService.Quit();
                 _findingGame = false;
+                GameStatus = "";
                 ButtonText = "Find a game";
                 return;
             }

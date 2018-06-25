@@ -117,7 +117,8 @@ namespace RPS.ViewModels
 
         private void OnOpponentQuit(string message)
         {
-
+            CanFight = false;
+            GameStatus = "Opponent has quit.";
         }
     }
 }
