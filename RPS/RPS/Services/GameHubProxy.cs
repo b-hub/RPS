@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
+using RPS.Domain;
 using RPS.Domain.Enums;
 using RPS.Services.Interfaces;
 
@@ -16,6 +17,9 @@ namespace RPS.Services
         {
             try
             {
+                if (_connection != null)
+                    await _connection.DisposeAsync();
+
                 _connection = new HubConnectionBuilder()
                     .WithUrl("http://rps-server.azurewebsites.net/gamehub")
                     .Build();
@@ -31,9 +35,14 @@ namespace RPS.Services
                     GameFound?.Invoke(gameId);
                 });
 
+                _connection.On<GameResult>("GameResult", (result) =>
+                {
+                    GameResult?.Invoke(result);
+                });
+
                 _connection.On<string>("QuitGame", async (message) =>
                 {
-                    Console.WriteLine(message);
+                    GameQuit?.Invoke(message);
                 });
 
                 await _connection.StartAsync();
@@ -58,7 +67,13 @@ namespace RPS.Services
             }
         }
 
+        public void Quit()
+        {
+            Task.Factory.StartNew(async () => { await _connection.DisposeAsync(); });
+        }
+
         public event OnGameFound GameFound;
         public event OnGameResult GameResult;
+        public event OnGameQuit GameQuit;
     }
 }

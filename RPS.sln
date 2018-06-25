@@ -9,6 +9,10 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "RPS", "RPS\RPS\RPS.shproj",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPS.Console", "RPS.Console\RPS.Console.csproj", "{C735281B-E581-43BC-B546-586330B27F6A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPS.Web", "RPS.Web\RPS.Web.csproj", "{C6B4D4A7-73AD-4E89-ACC0-29F6120EF018}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPS.Game.Core", "RPS.Game.Core\RPS.Game.Core.csproj", "{91F09797-4ACE-4D94-A298-8BDC0B508DE2}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		RPS\RPS\RPS.projitems*{62a076a2-9e19-49cf-873a-905b0c30be6e}*SharedItemsImports = 4
@@ -29,6 +33,14 @@ Global
 		{C735281B-E581-43BC-B546-586330B27F6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C735281B-E581-43BC-B546-586330B27F6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C735281B-E581-43BC-B546-586330B27F6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6B4D4A7-73AD-4E89-ACC0-29F6120EF018}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6B4D4A7-73AD-4E89-ACC0-29F6120EF018}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6B4D4A7-73AD-4E89-ACC0-29F6120EF018}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6B4D4A7-73AD-4E89-ACC0-29F6120EF018}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91F09797-4ACE-4D94-A298-8BDC0B508DE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91F09797-4ACE-4D94-A298-8BDC0B508DE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91F09797-4ACE-4D94-A298-8BDC0B508DE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91F09797-4ACE-4D94-A298-8BDC0B508DE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

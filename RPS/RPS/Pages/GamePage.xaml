@@ -7,11 +7,15 @@
 			<Label Text="Game" HorizontalOptions="Center"></Label>
             <Label Text="{Binding GameId}" VerticalOptions="Center" HorizontalOptions="Center" />
 			
-			<Label Text="{Binding Status}" Margin="20" HorizontalOptions="Center"></Label>
+			<Label Text="{Binding GameStatus}" Margin="20" HorizontalOptions="Center"></Label>
+
+			<StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0, 20">
+				<Button Text="Rock" IsVisible="{Binding CanFight}" Command="{Binding CmdRock}"></Button>
+				<Button Text="Paper" IsVisible="{Binding CanFight}" Command="{Binding CmdPaper}"></Button>
+				<Button Text="Scissors" IsVisible="{Binding CanFight}" Command="{Binding CmdScissors}"></Button>
+			</StackLayout>
 			
-			<Button Text="Rock"></Button>
-			<Button Text="Paper"></Button>
-			<Button Text="Scissors"></Button>
-        </StackLayout>
+			<Button Text="Quit" Command="{Binding CmdQuit}"></Button>
+		</StackLayout>
     </ContentPage.Content>
 </ContentPage>

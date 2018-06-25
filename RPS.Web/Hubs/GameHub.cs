@@ -20,12 +20,11 @@ namespace RPS.Web.Hubs
             if (IsListening) return;
 
             IsListening = true;
-            Game.OnResult += async (game, winner) =>
+            Game.OnResult += async (game, getResultFor) =>
             {
                 var clients = globalContext.Clients;
-                var message = $"Winner is: {winner}";
-                await clients.Client(game.Id1).SendAsync("ReceiveMessage", message);
-                await clients.Client(game.Id2).SendAsync("ReceiveMessage", message);
+                await clients.Client(game.Id1).SendAsync("GameResult", getResultFor(game.Id1));
+                await clients.Client(game.Id2).SendAsync("GameResult", getResultFor(game.Id2));
             };
         }
 
@@ -55,12 +54,18 @@ namespace RPS.Web.Hubs
             await base.OnConnectedAsync();
         }
 
-        public override Task OnDisconnectedAsync(Exception exception)
+        public override async Task OnDisconnectedAsync(Exception exception)
         {
-            _disconnected.TryAdd(Context.ConnectionId, false);
-            // quit game if exists
+            var connectionId = Context.ConnectionId;
+            _disconnected.TryAdd(connectionId, false);
+            var games = _games.Where(x => x.Value.IsPlayer(connectionId));
+            foreach (var game in games)
+            {
+                var opponentId = game.Value.OpponentId(connectionId);
+                await Clients.Client(opponentId).SendAsync("QuitGame", $"{connectionId} has quit the game. Game summary: {game.Value.GameSummary(opponentId)}");
+            }
 
-            return base.OnDisconnectedAsync(exception);
+            await base.OnDisconnectedAsync(exception);
         }
 
         public async Task SendMessage(string message)
@@ -137,7 +142,7 @@ namespace RPS.Web.Hubs
 
         public static event Result OnResult;
 
-        public delegate void Result(Game sender, string winner);
+        public delegate void Result(Game sender, Func<string, GameResult> getResultFor);
 
         public string Id { get; }
         public string Id1 { get; }
@@ -175,8 +180,15 @@ namespace RPS.Web.Hubs
                 _move2 = null;
                 _results.Add(winningId);
 
-                OnResult?.Invoke(this, winningId);
+                OnResult?.Invoke(this, playerId => GetResultFor(playerId, winningId));
             }
+        }
+
+        private GameResult GetResultFor(string playerId, string winningId)
+        {
+            if (winningId == null) return GameResult.Draw;
+
+            return winningId == playerId ? GameResult.Win : GameResult.Lose;
         }
 
         private string GetWinner()
@@ -193,5 +205,12 @@ namespace RPS.Web.Hubs
         }
 
 
+    }
+
+    public enum GameResult
+    {
+        Win,
+        Lose,
+        Draw
     }
 }

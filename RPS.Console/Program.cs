@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
+using RPS.Domain;
 
 /* SET HUB_URL= */
 
@@ -15,8 +16,6 @@ namespace RPS.Console
 
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Hello World!");
-
             StartUp().Wait();
 
             while (!hasQuit)
@@ -62,6 +61,13 @@ namespace RPS.Console
                     _gameId = gameId;
                     System.Console.ForegroundColor = ConsoleColor.Green;
                     System.Console.WriteLine($"Started game with id: {_gameId}");
+                    System.Console.ResetColor();
+                });
+
+                _connection.On<GameResult>("GameResult", (result) =>
+                {
+                    System.Console.ForegroundColor = ConsoleColor.Blue;
+                    System.Console.WriteLine(result.ToString());
                     System.Console.ResetColor();
                 });
 

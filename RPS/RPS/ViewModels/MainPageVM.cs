@@ -55,7 +55,12 @@ namespace RPS.ViewModels
         private async Task FindGame()
         {
             if (_findingGame)
+            {
+                _gameService.Quit();
+                _findingGame = false;
+                ButtonText = "Find a game";
                 return;
+            }
 
             _findingGame = true;
             ButtonText = "Cancel";
